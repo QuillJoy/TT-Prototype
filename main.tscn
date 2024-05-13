@@ -1,4 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhmw71blxmd5m"]
+[gd_scene load_steps=6 format=3 uid="uid://dhmw71blxmd5m"]
+
+[ext_resource type="PackedScene" uid="uid://n7gugi6uu2jq" path="res://joystick.tscn" id="1_0rt7g"]
+[ext_resource type="PackedScene" uid="uid://cbvcy1loo6r5h" path="res://player.tscn" id="2_kxll1"]
+[ext_resource type="Script" path="res://player.gd" id="3_ti0x7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_remvl"]
 size = Vector3(60, 2, 60)
@@ -7,6 +11,24 @@ size = Vector3(60, 2, 60)
 size = Vector3(60, 2, 60)
 
 [node name="Main" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.25
+
+[node name="Joystick" parent="CanvasLayer" instance=ExtResource("1_0rt7g")]
+position = Vector2(170, 510)
+scale = Vector2(1.38211, 1.38211)
+
+[node name="Player" parent="." instance=ExtResource("2_kxll1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.835518, 0)
+script = ExtResource("3_ti0x7")
+
+[node name="CameraPivot" type="Marker3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.835518, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.956305, 0.292372, 0, -0.292372, 0.956305, 0, 3.10685, 3.29098)
+current = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
