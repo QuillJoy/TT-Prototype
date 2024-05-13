@@ -14,6 +14,25 @@ config/name="TT-Prototype"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[input]
+
+move_forward={
+"deadzone": 0.5,
+"events": []
+}
+move_backward={
+"deadzone": 0.5,
+"events": []
+}
+move_left={
+"deadzone": 0.5,
+"events": []
+}
+move_right={
+"deadzone": 0.5,
+"events": []
+}
+
 [rendering]
 
 renderer/rendering_method="mobile"
