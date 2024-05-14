@@ -48,7 +48,7 @@ func handle_drag(event: InputEventScreenDrag):
 		if touch_points.size() == 1:
 			if can_rotate:
 				camera_pivot.rotate_object_local(Vector3.UP, event.relative.x * 0.001)
-	
+
 
 func _on_joystick_joystick_pressed():
 	joystick_pressed = true
@@ -58,3 +58,20 @@ func _on_joystick_joystick_released():
 	joystick_pressed = false
 
 
+
+
+func _on_button_pressed():
+
+	var zoom_factor = .9
+	print(camera_3d.size)
+	var new_size = camera_3d.size * zoom_factor
+
+	camera_3d.size = new_size
+
+
+func _on_zoom_out_pressed():
+	var zoom_factor = 1.1
+	print(camera_3d.size)
+	var new_size = camera_3d.size * zoom_factor
+
+	camera_3d.size = new_size
