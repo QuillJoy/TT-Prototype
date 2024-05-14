@@ -14,3 +14,7 @@ func _physics_process(delta):
 		velocity = Vector3(0,0,0)
 		
 	move_and_slide()
+
+func _unhandle_input(event):
+	if event is InputEventScreenDrag:
+		print("screen drag")

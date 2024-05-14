@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhmw71blxmd5m"]
+[gd_scene load_steps=7 format=3 uid="uid://dhmw71blxmd5m"]
 
 [ext_resource type="PackedScene" uid="uid://n7gugi6uu2jq" path="res://joystick.tscn" id="1_0rt7g"]
 [ext_resource type="PackedScene" uid="uid://cbvcy1loo6r5h" path="res://player.tscn" id="2_kxll1"]
 [ext_resource type="Script" path="res://player.gd" id="3_ti0x7"]
+[ext_resource type="Script" path="res://CameraPivot.gd" id="4_nsl0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_remvl"]
 size = Vector3(60, 2, 60)
@@ -24,10 +25,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.835518, 0)
 script = ExtResource("3_ti0x7")
 
 [node name="CameraPivot" type="Marker3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.835518, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, -0.835518, 0)
+script = ExtResource("4_nsl0w")
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.956305, 0.292372, 0, -0.292372, 0.956305, 0, 3.10685, 3.29098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80882, 3.29098)
 current = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -39,6 +41,29 @@ shape = SubResource("BoxShape3D_remvl")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_4j842")
 
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall1" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 30, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall1"]
+shape = SubResource("BoxShape3D_remvl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall1"]
+mesh = SubResource("BoxMesh_4j842")
+
+[node name="Wall2" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -30, 30, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2"]
+shape = SubResource("BoxShape3D_remvl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall2"]
+mesh = SubResource("BoxMesh_4j842")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
 shadow_enabled = true
+
+[connection signal="joystick_pressed" from="CanvasLayer/Joystick" to="Player/CameraPivot" method="_on_joystick_joystick_pressed"]
+[connection signal="joystick_released" from="CanvasLayer/Joystick" to="Player/CameraPivot" method="_on_joystick_joystick_released"]
