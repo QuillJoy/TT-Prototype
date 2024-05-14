@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var can_rotate: bool
 
 var joystick_pressed: bool
+@onready var camera_3d = $CameraPivot/Camera3D
 
 var touch_points: Dictionary = {}
 var speed = 5
@@ -13,11 +14,13 @@ func _physics_process(delta):
 	var direction = joystick.posVector
 	direction.z = direction.y
 	direction.y = 0
-	direction = direction.rotated(Vector3.UP,(PI/4)).normalized()
+	var camera_rotation_y = camera_3d.global_transform.basis.get_euler().y
+
+	direction = direction.rotated(Vector3.UP,camera_rotation_y).normalized()
 
 	if direction:
 		velocity = direction * speed
-		$Pivot.basis = Basis.looking_at(direction)
+		$Pivot.look_at($Pivot.global_transform.origin + direction, Vector3.UP)
 	else:
 		velocity = Vector3(0,0,0)
 		
@@ -44,7 +47,6 @@ func handle_drag(event: InputEventScreenDrag):
 		if touch_points.size() == 1:
 			if can_rotate:
 				rotate_object_local(Vector3.UP, event.relative.x * 0.001)
-				print(self.rotation_degrees)
 	
 
 func _on_joystick_joystick_pressed():
