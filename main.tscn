@@ -35,21 +35,6 @@ offset_bottom = 82.0
 theme_override_font_sizes/font_size = 32
 text = "-"
 
-[node name="RotateUp" type="Button" parent="CanvasLayer"]
-offset_left = 41.0
-offset_top = -1.0
-offset_right = 125.0
-offset_bottom = 80.0
-theme_override_font_sizes/font_size = 32
-text = "^"
-
-[node name="RotateDown" type="Button" parent="CanvasLayer"]
-offset_left = 128.0
-offset_right = 212.0
-offset_bottom = 81.0
-theme_override_font_sizes/font_size = 32
-text = "v"
-
 [node name="Player" parent="." instance=ExtResource("2_kxll1")]
 transform = Transform3D(2.10082, 0, 0, 0, 2.10082, 0, 0, 0, 2.10082, 0, 2.1782, 0)
 script = ExtResource("3_ti0x7")
@@ -129,5 +114,3 @@ spot_range = 7.98585
 [connection signal="joystick_released" from="CanvasLayer/Joystick" to="Player" method="_on_joystick_joystick_released"]
 [connection signal="pressed" from="CanvasLayer/ZoomIn" to="Player" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ZoomOut" to="Player" method="_on_zoom_out_pressed"]
-[connection signal="pressed" from="CanvasLayer/RotateUp" to="Player" method="_on_rotate_up_pressed"]
-[connection signal="pressed" from="CanvasLayer/RotateDown" to="Player" method="_on_rotate_down_pressed"]
