@@ -75,3 +75,16 @@ func _on_zoom_out_pressed():
 	var new_size = camera_3d.size * zoom_factor
 
 	camera_3d.size = new_size
+
+
+func _on_rotate_up_pressed():
+	var rot_offset = 5
+	
+	camera_3d.global_rotation_degrees.x += rot_offset
+
+
+
+func _on_rotate_down_pressed():
+	var rot_offset = 5
+	
+	camera_3d.global_rotation_degrees.x -= rot_offset
