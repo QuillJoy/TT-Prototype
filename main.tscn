@@ -49,6 +49,11 @@ projection = 1
 current = true
 size = 19.952
 
+[node name="FirstPersonCameraPivot" type="Marker3D" parent="Player"]
+
+[node name="FirstPersonCamera" type="Camera3D" parent="Player/FirstPersonCameraPivot"]
+transform = Transform3D(0.476005, 0, 0, 0, 0.476005, 0, 0, 0, 0.476005, 0, 0, 0)
+
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
