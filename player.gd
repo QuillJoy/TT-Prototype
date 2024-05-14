@@ -64,16 +64,12 @@ func handle_drag(event: InputEventScreenDrag):
 					first_person_camera_pivot.rotate_object_local(Vector3.UP, event.relative.x * -0.001) 
 					first_person_camera.rotate_object_local(Vector3.RIGHT, event.relative.y * -0.001)
 					$Pivot.look_at(first_person_camera.global_transform.origin + -first_person_camera.global_transform.basis.z, Vector3.UP)
-					#$Pivot.look_at(first_person_camera.position, Vector3.RIGHT)
+
 				else:
 					
 					camera_pivot.rotate_object_local(Vector3.UP, event.relative.x * -0.001) 
 					camera_3d.rotate_object_local(Vector3.RIGHT, event.relative.y * -0.001)
-				#var camera_rotation = camera_pivot.global_transform.basis.get_euler()
-				#print(camera_rotation)
-				#var local_right = camera_pivot.global_transform.basis.x
-			#
-				#camera_pivot.rotate_object_local(local_right, event.relative.y * 0.001)
+
 func _on_joystick_joystick_pressed():
 	joystick_pressed = true
 
