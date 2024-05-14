@@ -8,6 +8,7 @@ var pressing = false
 
 func _ready():
 	maxLength *= parent.scale.x
+
 	
 func _process(delta):
 	if pressing:
@@ -21,14 +22,15 @@ func _process(delta):
 	else:
 		global_position = lerp(global_position, parent.global_position, delta*10)
 		parent.posVector = Vector3(0,0,0)
-	#print(parent.posVector)
+
 	
 func calculateVector():
 	if(abs(global_position.x - parent.global_position.x)) >= deadzone:
 		parent.posVector.x = (global_position.x - parent.global_position.x)/maxLength
 	if(abs(global_position.y - parent.global_position.y)) >= deadzone:
 		parent.posVector.y = (global_position.y - parent.global_position.y)/maxLength
-		
+	
+	
 func _on_button_button_down():
 	pressing = true
 

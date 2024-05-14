@@ -13,9 +13,11 @@ func _physics_process(delta):
 	var direction = joystick.posVector
 	direction.z = direction.y
 	direction.y = 0
-	
+	direction = direction.rotated(Vector3.UP,(PI/4)).normalized()
+
 	if direction:
 		velocity = direction * speed
+		$Pivot.basis = Basis.looking_at(direction)
 	else:
 		velocity = Vector3(0,0,0)
 		
@@ -25,6 +27,7 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventScreenTouch:
 		handle_touch(event)
+	# only when camera is first person
 	elif event is InputEventScreenDrag:
 		handle_drag(event)
 
