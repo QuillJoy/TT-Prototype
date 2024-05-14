@@ -6,6 +6,7 @@ extends CharacterBody3D
 
 var joystick_pressed: bool
 @onready var camera_3d = $CameraPivot/Camera3D
+@onready var camera_pivot = $CameraPivot
 
 var touch_points: Dictionary = {}
 var speed = 5
@@ -46,7 +47,7 @@ func handle_drag(event: InputEventScreenDrag):
 	if !joystick_pressed:
 		if touch_points.size() == 1:
 			if can_rotate:
-				rotate_object_local(Vector3.UP, event.relative.x * 0.001)
+				camera_pivot.rotate_object_local(Vector3.UP, event.relative.x * 0.001)
 	
 
 func _on_joystick_joystick_pressed():
