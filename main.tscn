@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhmw71blxmd5m"]
+[gd_scene load_steps=7 format=3 uid="uid://dhmw71blxmd5m"]
 
 [ext_resource type="PackedScene" uid="uid://n7gugi6uu2jq" path="res://joystick.tscn" id="1_0rt7g"]
 [ext_resource type="PackedScene" uid="uid://cbvcy1loo6r5h" path="res://player.tscn" id="2_kxll1"]
 [ext_resource type="Script" path="res://player.gd" id="3_ti0x7"]
+[ext_resource type="PackedScene" uid="uid://du5dv4ufewk3b" path="res://interactable_object.tscn" id="4_e1umx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_remvl"]
 size = Vector3(15, 2, 15)
@@ -66,6 +67,15 @@ mesh = SubResource("BoxMesh_4j842")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
 shadow_enabled = true
+
+[node name="InteractableObject" parent="." instance=ExtResource("4_e1umx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40122, 0.708471, -5.01094)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.194919, 0.980819, 0, -0.980819, -0.194919, -5.76565, 7.05333, -6.13878)
+light_color = Color(1, 0.568627, 0, 1)
+light_energy = 20.0
+spot_range = 7.98585
 
 [connection signal="joystick_pressed" from="CanvasLayer/Joystick" to="Player" method="_on_joystick_joystick_pressed"]
 [connection signal="joystick_released" from="CanvasLayer/Joystick" to="Player" method="_on_joystick_joystick_released"]
